@@ -1,1 +1,44 @@
 @import "markdown";
+.scrollbar {
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #9e9e9e;
+    border-radius: 100px;
+    //border: 4px solid transparent;
+    transition-duration: .15s;
+    transition-timing-function: ease-in-out;
+    position: absolute;
+    cursor: pointer;
+    pointer-events: auto;
+    background-clip: content-box;
+    box-sizing: border-box;
+    transition-property: width, height;
+    opacity: .2;
+  }
+
+  &::-webkit-scrollbar-thumb:active {
+    opacity: .24;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    opacity: .24;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border: none;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}

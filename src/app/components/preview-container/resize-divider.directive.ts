@@ -115,7 +115,7 @@ export class ResizeDividerDirective implements AfterViewInit {
 
     this.prefTick.top = top - this.top
     this.prefTick.left = left - this.left
-    this.onMove.emit(this.prefTick)
+    this.onMove.emit({diffTop: this.prefTick.top, diffLeft: this.prefTick.left})
 
     this.cdr.markForCheck()
   }

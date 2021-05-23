@@ -8,6 +8,7 @@ import {MarkdownModule, MarkedOptions} from 'ngx-markdown';
 import {HttpClientModule} from '@angular/common/http';
 import {EditorModule} from './components/editor/editor.module';
 import {PreviewContainerModule} from './components/preview-container/preview-container.module';
+import { MarkdownEditorComponent } from './components/markdown-editor/markdown-editor.component';
 
 const options: MarkedOptions = new MarkedOptions()
 options.headerIds = true
@@ -16,6 +17,7 @@ options.silent = false
 @NgModule({
   declarations: [
     AppComponent,
+    MarkdownEditorComponent,
   ],
   imports: [
     CommonModule,

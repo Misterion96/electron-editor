@@ -1,10 +1,10 @@
-<div class="side left-side" #leftSide>
+<div class="side left-side scrollbar" #leftSide>
   <ng-content select="left"></ng-content>
 </div>
 <div appResizeDivider class="divider"
-     (onMove)="onMove($event, leftSide, rightSide)"
+     (onMove)="move($event)"
 ></div>
-<div class="side right-side" #rightSide>
+<div class="side right-side scrollbar" #rightSide>
   <ng-content select="right"></ng-content>
 </div>
 
