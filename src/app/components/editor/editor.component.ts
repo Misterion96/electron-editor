@@ -21,7 +21,7 @@ export interface EditorOptions extends IEditorOptions {
   ]
 })
 export class EditorComponent implements OnInit, ControlValueAccessor {
-  private editor!: IStandaloneCodeEditor
+  public standaloneCodeEditor!: IStandaloneCodeEditor
   disabled = false;
   onChange = (value: string) => {
   };
@@ -83,7 +83,7 @@ export class EditorComponent implements OnInit, ControlValueAccessor {
   }
 
   public onInit($event: any): void {
-    this.editor = $event
+    this.standaloneCodeEditor = $event
   }
 }
 

@@ -1,8 +1,9 @@
-import {Component, OnInit, ChangeDetectionStrategy, AfterViewInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, AfterViewInit, ChangeDetectorRef, ViewChild} from '@angular/core';
 import {showcaseValue} from '../../shared/showcase.value';
 import {FormControl} from '@angular/forms';
 import {map} from 'rxjs/operators';
 import {parseStringToMarked} from '../../shared/marked';
+import {EditorComponent} from '../editor/editor.component';
 
 @Component({
   selector: 'app-markdown-editor',
@@ -11,6 +12,7 @@ import {parseStringToMarked} from '../../shared/marked';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MarkdownEditorComponent implements OnInit, AfterViewInit {
+  @ViewChild('editor') editor: EditorComponent
   public onStartCoords
   public readonly inputControl = new FormControl('')
   input$ = this.inputControl.valueChanges.pipe(
@@ -29,6 +31,11 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
     }, 1000)
   }
   private onMove($event: any): void {
+
+  }
+
+  public onStop($event: any): void {
+    setTimeout(() =>  this.editor.standaloneCodeEditor.layout())
 
   }
 }
