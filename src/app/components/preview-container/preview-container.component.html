@@ -2,7 +2,9 @@
   <ng-content select="left"></ng-content>
 </div>
 <div appResizeDivider class="divider"
-     (onMove)="move($event)"
+     (onMove)="onMove.emit($event)"
+     (onStart)="start($event)"
+     (onStop)="stop($event)"
 ></div>
 <div class="side right-side scrollbar" #rightSide>
   <ng-content select="right"></ng-content>

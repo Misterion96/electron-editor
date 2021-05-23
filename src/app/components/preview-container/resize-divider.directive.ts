@@ -3,21 +3,14 @@ import {
   Directive,
   ElementRef,
   EventEmitter, HostBinding,
-  HostListener,
   Inject,
-  Input,
   NgZone,
   Output
 } from '@angular/core';
 import {fromEvent, Observable} from 'rxjs';
 import {switchMap, takeUntil, tap} from 'rxjs/operators';
 import {DOCUMENT} from '@angular/common';
-export interface IDiffPos {
-  topDif: number
-  leftDif: number
-  left: number
-  top: number
-}
+
 @Directive({
   selector: '[appResizeDivider]'
 })
@@ -25,8 +18,10 @@ export class ResizeDividerDirective implements AfterViewInit {
   @Output() onStart = new EventEmitter()
   @Output() onMove = new EventEmitter()
   @Output() onStop = new EventEmitter()
-  @HostBinding('style.left.px') left
-  @HostBinding('style.top.px') top
+
+  @HostBinding('style.left.px') left = null
+  @HostBinding('style.top.px') top = null
+
   private startTop = 0
   private startLeft = 0
 
@@ -34,6 +29,7 @@ export class ResizeDividerDirective implements AfterViewInit {
     top: number,
     left: number
   }
+
   constructor(
     @Inject(DOCUMENT) private readonly document: Document,
     private readonly zone: NgZone,
@@ -42,15 +38,15 @@ export class ResizeDividerDirective implements AfterViewInit {
   ) {
   }
 
+  get divider(): HTMLElement {
+    return this.er.nativeElement
+  }
+
   get RECT(): DOMRect {
-    return this.er.nativeElement.getBoundingClientRect()
+    return this.divider.getBoundingClientRect()
   }
 
   public ngAfterViewInit(): void {
-    const {top, left} = this.RECT
-    this.top = top
-    this.left = left
-
     this.mousedown$(this.er.nativeElement)
       .subscribe(e => this.onDividerMove(e as MouseEvent))
   }
@@ -66,6 +62,8 @@ export class ResizeDividerDirective implements AfterViewInit {
           tap(event => {
             (event as MouseEvent).preventDefault()
             this.setStartCoords()
+            this.onStart.emit(this.RECT);
+            this.setStartStyle();
           }),
           switchMap(() => this.mousemove$())
         )
@@ -86,9 +84,11 @@ export class ResizeDividerDirective implements AfterViewInit {
     return fromEvent(this.document, 'mouseup')
       .pipe(
         tap(event => {
-          event.preventDefault()
+          event.preventDefault();
+          this.onStop.emit(this.RECT);
+
           this.resetCoords();
-          this.onStop.emit({top: this.top, left: this.left});
+          this.setStopStyle();
         }),
       )
   }
@@ -101,7 +101,8 @@ export class ResizeDividerDirective implements AfterViewInit {
   private resetCoords(): void {
     this.startTop = 0;
     this.startLeft = 0;
-
+    this.top = null
+    this.left = null
     this.prefTick = {top: 0, left: 0}
   }
 
@@ -126,7 +127,13 @@ export class ResizeDividerDirective implements AfterViewInit {
     this.startLeft = left
 
     this.prefTick = {top: 0, left: 0}
-    this.onStart.emit({top, left});
   }
 
+  private setStartStyle(): void {
+    this.divider.classList.add('divider-vt')
+  }
+
+  private setStopStyle(): void {
+    this.divider.classList.remove('divider-vt')
+  }
 }

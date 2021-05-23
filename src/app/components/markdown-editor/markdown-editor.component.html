@@ -1,0 +1,4 @@
+<app-preview-container>
+  <app-editor ngProjectAs="left" [formControl]="inputControl"></app-editor>
+  <div ngProjectAs="right" class="markdown-body" [innerHTML]="input$ | async"></div>
+</app-preview-container>
