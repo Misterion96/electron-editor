@@ -3,32 +3,22 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
+    "outDir": "./dist",
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
+    "skipLibCheck": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es5",
-    "module": "esnext",
+    "target": "es2015",
+    "module": "es2020",
     "lib": [
       "es2018",
-      "dom",
-      "esnext"
+      "dom"
     ],
     "types": [
-      "node", "electron"
+      "node"
     ]
-  },
-  "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
   }
 }

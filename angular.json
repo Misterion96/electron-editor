@@ -1,18 +1,13 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "cli": {
-    "analytics": false
-  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "electron-angular": {
+    "sage-docs": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:application": {
-          "strict": false,
-          "style": "less",
-          "skipTests": true
+        "@schematics/angular:component": {
+          "style": "less"
         }
       },
       "root": "",
@@ -22,20 +17,27 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/electron-angular",
+            "outputPath": "disNt/electron-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              { "glob": "**/*",
+                "input": "node_modules/ngx-monaco-editor/assets/monaco",
+                "output": "./assets/monaco/"
+              }
             ],
             "styles": [
               "node_modules/normalize.css/normalize.css",
               "src/styles.less"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/marked/lib/marked.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -72,6 +74,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "sage-docs:build"
+          },
           "configurations": {
             "production": {
               "browserTarget": "electron-angular:build:production"
@@ -108,5 +113,8 @@
       }
     }
   },
-  "defaultProject": "electron-angular"
+  "defaultProject": "electron-angular",
+  "cli": {
+    "analytics": false
+  }
 }
