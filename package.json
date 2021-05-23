@@ -5,8 +5,12 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "el:build": "tsc electron/electron-app.ts --outDir dist",
+    "el:watch": "tcs electron/electron-app.ts -w --outDir dist",
+    "el:start": "npm run el:build && electron dist/electron-app.js"
   },
   "private": true,
   "dependencies": {
@@ -20,7 +24,8 @@
     "@angular/router": "~12.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "@types/node": "^15.3.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.0.1",
@@ -28,6 +33,7 @@
     "@angular/compiler-cli": "~12.0.1",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
+    "electron": "^12.0.9",
     "jasmine-core": "~3.7.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
