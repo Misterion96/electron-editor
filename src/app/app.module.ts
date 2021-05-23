@@ -7,6 +7,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MarkdownModule, MarkedOptions} from 'ngx-markdown';
 import {HttpClientModule} from '@angular/common/http';
 import {EditorModule} from './components/editor/editor.module';
+import {PreviewContainerModule} from './components/preview-container/preview-container.module';
 
 const options: MarkedOptions = new MarkedOptions()
 options.headerIds = true
@@ -28,7 +29,8 @@ options.silent = false
       },
       sanitize: SecurityContext.HTML
     }),
-    EditorModule
+    EditorModule,
+    PreviewContainerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
