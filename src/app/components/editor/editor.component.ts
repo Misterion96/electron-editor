@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy, forwardRef} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, forwardRef, AfterViewInit} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {editor} from 'monaco-editor';
 import IEditorOptions = editor.IEditorOptions;
@@ -20,7 +20,7 @@ export interface EditorOptions extends IEditorOptions {
     },
   ]
 })
-export class EditorComponent implements OnInit, ControlValueAccessor {
+export class EditorComponent implements OnInit, ControlValueAccessor, AfterViewInit {
   public standaloneCodeEditor!: IStandaloneCodeEditor
   disabled = false;
   onChange = (value: string) => {
@@ -66,6 +66,10 @@ export class EditorComponent implements OnInit, ControlValueAccessor {
   ngOnInit(): void {
   }
 
+  public ngAfterViewInit(): void {
+
+  }
+
   writeValue(value: any): void {
     this.value = value
   }
@@ -84,6 +88,10 @@ export class EditorComponent implements OnInit, ControlValueAccessor {
 
   public onInit($event: any): void {
     this.standaloneCodeEditor = $event
+    this.standaloneCodeEditor.layout()
+  }
+  public layout(){
+    if(this.standaloneCodeEditor) this.standaloneCodeEditor.layout()
   }
 }
 

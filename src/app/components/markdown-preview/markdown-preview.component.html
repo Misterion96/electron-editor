@@ -1,0 +1,4 @@
+<ng-container *ngIf="value && value.length">
+  <div *ngFor="let row of value.split('\r')" [outerHTML]="row | parseMarkdown"></div>
+</ng-container>
+

@@ -14,7 +14,7 @@ import {EditorComponent} from '../editor/editor.component';
 export class MarkdownEditorComponent implements OnInit, AfterViewInit {
   @ViewChild('editor') editor: EditorComponent
   public onStartCoords
-  public readonly inputControl = new FormControl('')
+  public readonly inputControl = new FormControl()
   input$ = this.inputControl.valueChanges.pipe(
     map(v => parseStringToMarked(v))
   )
@@ -27,15 +27,16 @@ export class MarkdownEditorComponent implements OnInit, AfterViewInit {
 
   public ngAfterViewInit(): void {
     setTimeout(() => {
-      this.inputControl.setValue(showcaseValue, {emitEvent: true})
+      this.editor.writeValue(showcaseValue)
     }, 1000)
+
   }
+
   private onMove($event: any): void {
 
   }
 
   public onStop($event: any): void {
-    setTimeout(() =>  this.editor.standaloneCodeEditor.layout())
-
+    setTimeout(() => this.editor.layout())
   }
 }

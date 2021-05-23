@@ -7,6 +7,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {MarkdownModule, MarkedOptions} from 'ngx-markdown';
 import {ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
+import {MarkdownPreviewModule} from '../markdown-preview/markdown-preview.module';
 const options: MarkedOptions = new MarkedOptions()
 options.headerIds = true
 options.silent = false
@@ -23,7 +24,8 @@ options.silent = false
     EditorModule,
     PreviewContainerModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    MarkdownPreviewModule
   ],
   exports: [
     MarkdownEditorComponent
