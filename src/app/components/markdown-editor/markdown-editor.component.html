@@ -1,4 +1,9 @@
-<app-preview-container (onStop)="onStop($event)" style="height: 100vh;">
+<div class="editor-controls">
+  <button>control 1</button>
+  <button>control 2</button>
+  <button>control 3</button>
+</div>
+<app-preview-container (onStop)="onStop($event)">
   <app-editor #editor ngProjectAs="left" [formControl]="inputControl"></app-editor>
   <app-markdown-preview ngProjectAs="right" [value]="input$ | async"></app-markdown-preview>
 </app-preview-container>

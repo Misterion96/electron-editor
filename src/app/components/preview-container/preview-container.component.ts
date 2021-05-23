@@ -20,9 +20,13 @@ export class PreviewContainerComponent implements OnInit {
   @Output() onMove = new EventEmitter()
   @Output() onStop = new EventEmitter()
 
+  @Input() hideLeft = false
+  @Input() hideRight = false
+  @Input() live = false
+
   public startPos: { top: number, left: number }
   @HostBinding('class.preview-container') class = true
-  @Input() live = false
+
   @ViewChild('leftSide', {read: ElementRef}) leftSide: ElementRef<HTMLElement>
   @ViewChild('rightSide', {read: ElementRef}) rightSide: ElementRef<HTMLElement>
 

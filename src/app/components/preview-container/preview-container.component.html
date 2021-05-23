@@ -1,12 +1,17 @@
-<div class="side left-side scrollbar" #leftSide>
+<div class="side left-side scrollbar" #leftSide
+     [ngStyle]="{'display': hideLeft ? 'none': 'block'}"
+>
   <ng-content select="left"></ng-content>
 </div>
 <div appResizeDivider class="divider"
+     *ngIf="!hideRight && !hideLeft"
      (onMove)="onMove.emit($event)"
      (onStart)="start($event)"
      (onStop)="stop($event)"
 ></div>
-<div class="side right-side scrollbar" #rightSide>
+<div class="side right-side scrollbar" #rightSide
+     [ngStyle]="{'display': hideRight ? 'none': 'block'}"
+>
   <ng-content select="right"></ng-content>
 </div>
 
