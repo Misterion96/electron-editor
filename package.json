@@ -8,9 +8,9 @@
     "build:prod": "ng build --production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "el:build": "tsc electron/electron-app.ts --outDir dist",
-    "el:watch": "tcs electron/electron-app.ts -w --outDir dist",
-    "el:start": "npm run el:build && electron dist/electron-app.js"
+    "el:build": "tsc electron/main.ts",
+    "el:watch": "tsc electron/main.ts -w",
+    "el:start": "npm run el:build && electron electron/main.js"
   },
   "private": true,
   "dependencies": {
