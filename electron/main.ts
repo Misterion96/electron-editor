@@ -10,7 +10,7 @@ function createWindow () {
   })
   win.loadURL(
     url.format({
-      pathname: path.join(__dirname, `../dist/electron-angular/index.html`),
+      pathname: path.join(__dirname, `../electron-ui/index.html`),
       protocol: "file:",
       slashes: true
     })
