@@ -7,7 +7,7 @@
     "build": "ng build",
     "build:prod": "ng build --prod --base-href=./",
     "build:stats": "ng build --prod --stats-json && npm run show:stats",
-    "show:stats": "webpack-bundle-analyzer ./dist/electron-angular/stats.json",
+    "show:stats": "webpack-bundle-analyzer ./dist/electron-ui/stats.json",
     "el:build": "tsc electron/main.ts --outDir dist/electron",
     "el:watch": "tcs electron/main.ts -w --outDir dist/electron",
     "el:start": "npm run el:build && electron dist/electron/main.js",
